@@ -1,0 +1,45 @@
+public class GCDLCM{
+	public static void main(String args[]){
+		if(args.length == 2){
+			int a, b;
+			a = Integer.parseInt(args[0]);
+			b = Integer.parseInt(args[1]);
+			System.out.print(a+", "+b+" GCD : ");
+			System.out.println(GCD(a, b));
+			System.out.print(a+", "+b+" LCM : ");
+			System.out.println(LCM(a, b));
+		}else{
+			System.out.println("Usage : $ java GCDLCM num1 num2");
+		}
+	}
+	private int GCD(int a, int b){
+		int result, small, big;
+		(a<b)?small=a, big=b:small=b, big=a;
+		for(int i=1; i<=small/2; i++){
+			if((small%i)==0)
+				if((big%i)==0)
+					result = i;
+		}
+		return result;
+	}
+	private int LCM(int a, int b){
+		int result, small, big, smallstep, bigstep;
+		(a<b)?small=a, big=b:small=b, big=a;
+		smallstep = small;
+		bigstep = big;
+		while(small != big){
+			int temp;
+			while(small<big){
+				small += smallstep;
+			}
+			temp = small;
+			small = big;
+			big = small;
+			temp = smallstep;
+			smallstep = bigstep;
+			bigstep = smallstep;
+		}
+		result = small;	
+		return result;
+	}
+}
